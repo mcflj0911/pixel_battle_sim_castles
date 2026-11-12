@@ -1,0 +1,4469 @@
+{
+  "name": "Castle War",
+  "subtitle": "Two castles, one valley",
+  "description": "Ravensmere (a Greek city-state of white marble, hoplites and triremes) on the left and Ironvale (a Roman legion fort of red brick, legionaries and quinqueremes) on the right. Each castle stands in a moat with one bridge at its gate, has walls and four towers, archers on the walls and towers, and palisades in front of the gate. Troops muster in the courtyards and sally out when the enemy comes near. Catapults and trebuchets walk out with the army and batter the enemy walls, gates, towers and palisades. A side that gathers a strong force in the middle marches on the enemy's keep. Nobody wins: the battle goes on for as long as the program runs. Trenches and old craters scar the middle of the field and give archers cover.",
+  "seed": 1,
+  "map": {
+    "width": 4000,
+    "height": 900,
+    "shore": 620
+  },
+  "sides": {
+    "ravensmere": {
+      "name": "Ravensmere",
+      "color": [
+        70,
+        120,
+        220
+      ],
+      "goal": [
+        2000.0,
+        360
+      ],
+      "emblem": [
+        "#.....#",
+        "##...##",
+        "#######",
+        ".#####.",
+        "..###..",
+        "...#..."
+      ],
+      "style": "ravensmere"
+    },
+    "ironvale": {
+      "name": "Ironvale",
+      "color": [
+        210,
+        80,
+        70
+      ],
+      "goal": [
+        2000.0,
+        360
+      ],
+      "emblem": [
+        "#######",
+        ".#####.",
+        "..###..",
+        "..###..",
+        ".#####.",
+        "#######"
+      ],
+      "style": "ironvale"
+    }
+  },
+  "unit_types": {
+    "spearman": {
+      "name": "Spearman",
+      "sprite": "foot",
+      "hp": 110,
+      "attack": 12,
+      "defence": 8,
+      "speed": 26,
+      "reach": 14,
+      "sight": 200,
+      "cooldown": 1.4,
+      "rout_at": 20
+    },
+    "bowman": {
+      "name": "Bowman",
+      "sprite": "archer",
+      "hp": 60,
+      "attack": 9,
+      "defence": 3,
+      "speed": 24,
+      "reach": 160,
+      "sight": 250,
+      "cooldown": 2.0,
+      "rout_at": 20,
+      "volley": true
+    },
+    "fire_archer": {
+      "name": "Fire archer",
+      "sprite": "archer",
+      "hp": 60,
+      "attack": 11,
+      "defence": 3,
+      "speed": 24,
+      "reach": 140,
+      "sight": 240,
+      "cooldown": 2.5,
+      "rout_at": 20,
+      "volley": true,
+      "fire": true
+    },
+    "knight": {
+      "name": "Knight",
+      "sprite": "rider",
+      "hp": 150,
+      "attack": 16,
+      "defence": 10,
+      "speed": 40,
+      "reach": 16,
+      "sight": 230,
+      "cooldown": 1.5,
+      "rout_at": 20,
+      "mounted": true
+    },
+    "tower_bowman": {
+      "name": "Tower bowman",
+      "sprite": "archer",
+      "hp": 80,
+      "attack": 10,
+      "defence": 6,
+      "speed": 0,
+      "reach": 210,
+      "sight": 270,
+      "cooldown": 2.0,
+      "rout_at": -1000
+    },
+    "catapult": {
+      "name": "Catapult",
+      "sprite": "catapult",
+      "hp": 140,
+      "attack": 30,
+      "defence": 4,
+      "speed": 8,
+      "reach": 270,
+      "sight": 310,
+      "cooldown": 3.0,
+      "rout_at": 5,
+      "siege": true,
+      "splash": 22,
+      "fire_ammo": 0.3
+    },
+    "aldric": {
+      "name": "Sir Aldric",
+      "title": "the Unbroken",
+      "sprite": "champion",
+      "style": 0,
+      "hero": true,
+      "hp": 1100,
+      "attack": 28,
+      "defence": 26,
+      "speed": 24,
+      "reach": 16,
+      "sight": 260,
+      "cooldown": 1.2,
+      "respawn": 30,
+      "skills": [
+        "bulwark",
+        "thornmail",
+        "shield_wall",
+        "earthshaker"
+      ]
+    },
+    "isolde": {
+      "name": "Lady Isolde",
+      "title": "of the Lance",
+      "sprite": "commander",
+      "style": 0,
+      "hero": true,
+      "mounted": true,
+      "hp": 800,
+      "attack": 30,
+      "defence": 16,
+      "speed": 44,
+      "reach": 18,
+      "sight": 300,
+      "cooldown": 1.3,
+      "respawn": 30,
+      "skills": [
+        "standard",
+        "presence",
+        "lance_charge",
+        "rally_horn"
+      ]
+    },
+    "wren": {
+      "name": "Wren",
+      "title": "the Sharpshooter",
+      "sprite": "ranger",
+      "style": 0,
+      "hero": true,
+      "hp": 480,
+      "attack": 24,
+      "defence": 8,
+      "speed": 26,
+      "reach": 230,
+      "sight": 310,
+      "cooldown": 1.5,
+      "respawn": 30,
+      "skills": [
+        "eagle_eye",
+        "deadeye",
+        "rain_of_arrows",
+        "piercing_shot"
+      ]
+    },
+    "ambrose": {
+      "name": "Brother Ambrose",
+      "title": "the Healer",
+      "sprite": "mage",
+      "style": 0,
+      "hero": true,
+      "bolt": "holy",
+      "hp": 560,
+      "attack": 12,
+      "defence": 10,
+      "speed": 24,
+      "reach": 120,
+      "sight": 230,
+      "cooldown": 1.8,
+      "respawn": 30,
+      "skills": [
+        "benediction",
+        "sanctified",
+        "mending_light",
+        "holy_fire"
+      ]
+    },
+    "gorm": {
+      "name": "Gorm Ironhide",
+      "title": "the Berserker",
+      "sprite": "champion",
+      "style": 1,
+      "hero": true,
+      "hp": 1200,
+      "attack": 34,
+      "defence": 20,
+      "speed": 26,
+      "reach": 16,
+      "sight": 260,
+      "cooldown": 1.2,
+      "respawn": 30,
+      "skills": [
+        "bloodlust",
+        "rage",
+        "whirlwind",
+        "battle_roar"
+      ]
+    },
+    "kael": {
+      "name": "Kael Stormrider",
+      "title": "Warlord",
+      "sprite": "commander",
+      "style": 1,
+      "hero": true,
+      "mounted": true,
+      "hp": 820,
+      "attack": 32,
+      "defence": 16,
+      "speed": 46,
+      "reach": 18,
+      "sight": 300,
+      "cooldown": 1.3,
+      "respawn": 30,
+      "skills": [
+        "swiftness",
+        "warband",
+        "thunder_charge",
+        "cavalry_rally"
+      ]
+    },
+    "sable": {
+      "name": "Sable",
+      "title": "the Fire-Archer",
+      "sprite": "ranger",
+      "style": 1,
+      "hero": true,
+      "hp": 500,
+      "attack": 26,
+      "defence": 8,
+      "speed": 26,
+      "reach": 240,
+      "sight": 320,
+      "cooldown": 1.6,
+      "respawn": 30,
+      "skills": [
+        "pitch_arrows",
+        "hunters_eye",
+        "inferno",
+        "cripple_shot"
+      ]
+    },
+    "morwen": {
+      "name": "Morwen",
+      "title": "the Hexwitch",
+      "sprite": "mage",
+      "style": 1,
+      "hero": true,
+      "bolt": "hex",
+      "hp": 580,
+      "attack": 14,
+      "defence": 10,
+      "speed": 24,
+      "reach": 130,
+      "sight": 240,
+      "cooldown": 1.8,
+      "respawn": 30,
+      "skills": [
+        "siegecraft",
+        "dark_pact",
+        "hex",
+        "meteor"
+      ]
+    },
+    "king_edric": {
+      "name": "King Edric",
+      "title": "the Steadfast",
+      "sprite": "king",
+      "style": 0,
+      "hero": true,
+      "hp": 900,
+      "attack": 14,
+      "defence": 20,
+      "speed": 0,
+      "reach": 220,
+      "sight": 300,
+      "cooldown": 2.0,
+      "respawn": 60,
+      "skills": [
+        "royal_ward",
+        "crown_of_light",
+        "royal_command",
+        "last_stand"
+      ]
+    },
+    "king_varok": {
+      "name": "King Varok",
+      "title": "the Tyrant",
+      "sprite": "king",
+      "style": 1,
+      "hero": true,
+      "hp": 900,
+      "attack": 14,
+      "defence": 20,
+      "speed": 0,
+      "reach": 220,
+      "sight": 300,
+      "cooldown": 2.0,
+      "respawn": 60,
+      "skills": [
+        "iron_throne",
+        "tyrants_dread",
+        "war_banner",
+        "royal_volley"
+      ]
+    },
+    "wyvern": {
+      "name": "Wyvern rider",
+      "sprite": "wyvern",
+      "flying": true,
+      "air_role": "ground",
+      "altitude": 62,
+      "max_alive": 6,
+      "hp": 120,
+      "attack": 26,
+      "defence": 2,
+      "speed": 55,
+      "reach": 40,
+      "sight": 420,
+      "cooldown": 2.5,
+      "rout_at": -1000,
+      "splash": 26,
+      "fire_ammo": 0.7
+    },
+    "hawk": {
+      "name": "Hawk rider",
+      "sprite": "hawk",
+      "flying": true,
+      "air_role": "air",
+      "altitude": 78,
+      "max_alive": 4,
+      "hp": 90,
+      "attack": 24,
+      "defence": 4,
+      "speed": 78,
+      "reach": 40,
+      "sight": 520,
+      "cooldown": 1.0,
+      "rout_at": -1000
+    },
+    "ballista": {
+      "name": "Ballista",
+      "sprite": "ballista",
+      "air_only": true,
+      "hp": 100,
+      "attack": 55,
+      "defence": 4,
+      "speed": 14,
+      "reach": 300,
+      "sight": 340,
+      "cooldown": 2.2,
+      "rout_at": 5,
+      "angle": 55
+    },
+    "trebuchet": {
+      "name": "Trebuchet",
+      "sprite": "trebuchet",
+      "hp": 160,
+      "attack": 90,
+      "defence": 4,
+      "speed": 5,
+      "reach": 400,
+      "sight": 440,
+      "cooldown": 6.0,
+      "rout_at": 5,
+      "siege": true,
+      "splash": 34,
+      "angle": 75,
+      "fire_ammo": 0.25
+    },
+    "longbow": {
+      "name": "Longbowman",
+      "sprite": "longbow",
+      "hp": 55,
+      "attack": 20,
+      "defence": 1,
+      "speed": 32,
+      "reach": 190,
+      "sight": 290,
+      "cooldown": 2.1,
+      "rout_at": 10
+    },
+    "halberdier": {
+      "name": "Halberdier",
+      "sprite": "halberdier",
+      "hp": 80,
+      "attack": 24,
+      "defence": 6,
+      "speed": 36,
+      "reach": 22,
+      "sight": 140,
+      "cooldown": 1.8,
+      "rout_at": 8,
+      "anti_mounted": true
+    },
+    "berserker": {
+      "name": "Berserker",
+      "sprite": "berserker",
+      "hp": 65,
+      "attack": 32,
+      "defence": 2,
+      "speed": 44,
+      "reach": 16,
+      "sight": 140,
+      "cooldown": 1.3,
+      "rout_at": -1000,
+      "berserk": true
+    },
+    "war_dog": {
+      "name": "War dog",
+      "sprite": "war_dog",
+      "hp": 28,
+      "attack": 18,
+      "defence": 0,
+      "speed": 72,
+      "reach": 14,
+      "sight": 220,
+      "cooldown": 0.9,
+      "rout_at": -1000,
+      "hunts_routers": true
+    },
+    "pavise_cross": {
+      "name": "Pavise crossbow",
+      "sprite": "pavise_cross",
+      "hp": 70,
+      "attack": 22,
+      "defence": 5,
+      "speed": 28,
+      "reach": 150,
+      "sight": 240,
+      "cooldown": 2.4,
+      "rout_at": 10,
+      "pierce_shield": true
+    },
+    "mangonel": {
+      "name": "Mangonel",
+      "sprite": "mangonel",
+      "hp": 90,
+      "attack": 50,
+      "defence": 3,
+      "speed": 10,
+      "reach": 220,
+      "sight": 270,
+      "cooldown": 3.2,
+      "rout_at": -1000,
+      "siege": true,
+      "fire_ammo": 1.0,
+      "splash": 22,
+      "angle": 50
+    },
+    "ram": {
+      "name": "Battering ram",
+      "sprite": "ram_crew",
+      "hp": 130,
+      "attack": 42,
+      "defence": 8,
+      "speed": 8,
+      "reach": 18,
+      "sight": 60,
+      "cooldown": 3.0,
+      "rout_at": -1000,
+      "struct_only": true
+    },
+    "griffon": {
+      "name": "Griffon rider",
+      "sprite": "griffon",
+      "hp": 160,
+      "attack": 30,
+      "defence": 6,
+      "speed": 46,
+      "reach": 50,
+      "sight": 480,
+      "cooldown": 1.8,
+      "rout_at": -1000,
+      "flying": true,
+      "air_role": "air",
+      "altitude": 70,
+      "max_alive": 3
+    },
+    "harpy": {
+      "name": "Harpy",
+      "sprite": "harpy",
+      "hp": 55,
+      "attack": 22,
+      "defence": 2,
+      "speed": 90,
+      "reach": 35,
+      "sight": 380,
+      "cooldown": 1.5,
+      "rout_at": -1000,
+      "flying": true,
+      "air_role": "ground",
+      "altitude": 50,
+      "max_alive": 8,
+      "swoop": true
+    },
+    "marine": {
+      "name": "Marine",
+      "sprite": "foot",
+      "hp": 70,
+      "attack": 17,
+      "defence": 6,
+      "speed": 38,
+      "reach": 14,
+      "sight": 150,
+      "cooldown": 1.3,
+      "rout_at": 12
+    },
+    "longship": {
+      "name": "Longship",
+      "sprite": "longship",
+      "naval": true,
+      "naval_role": "ram",
+      "max_alive": 3,
+      "hp": 260,
+      "attack": 40,
+      "defence": 8,
+      "speed": 46,
+      "reach": 44,
+      "sight": 380,
+      "cooldown": 1.6,
+      "rout_at": -1000
+    },
+    "galley": {
+      "name": "Galley",
+      "sprite": "galley",
+      "naval": true,
+      "naval_role": "archer",
+      "max_alive": 2,
+      "hp": 220,
+      "attack": 18,
+      "defence": 5,
+      "speed": 28,
+      "reach": 230,
+      "sight": 320,
+      "cooldown": 1.3,
+      "rout_at": -1000
+    },
+    "catapult_ship": {
+      "name": "Catapult ship",
+      "sprite": "catapult_ship",
+      "naval": true,
+      "naval_role": "bombard",
+      "bombard": true,
+      "max_alive": 2,
+      "hp": 280,
+      "attack": 62,
+      "defence": 6,
+      "speed": 18,
+      "reach": 340,
+      "sight": 400,
+      "cooldown": 4.0,
+      "rout_at": -1000,
+      "splash": 26,
+      "angle": 55
+    },
+    "landing_boat": {
+      "name": "Landing boat",
+      "sprite": "landing_boat",
+      "naval": true,
+      "naval_role": "transport",
+      "carry": 6,
+      "max_alive": 2,
+      "hp": 110,
+      "attack": 0,
+      "defence": 3,
+      "speed": 40,
+      "reach": 0,
+      "sight": 200,
+      "cooldown": 9.0,
+      "rout_at": -1000
+    },
+    "pikeman": {
+      "name": "Hoplite",
+      "sprite": "foot",
+      "hp": 105,
+      "attack": 11,
+      "defence": 10,
+      "speed": 25,
+      "reach": 20,
+      "sight": 200,
+      "cooldown": 1.6,
+      "rout_at": 20,
+      "anti_mounted": true,
+      "side": "ravensmere",
+      "replaces": "spearman"
+    },
+    "royal_knight": {
+      "name": "Hippeus",
+      "sprite": "rider",
+      "hp": 175,
+      "attack": 15,
+      "defence": 13,
+      "speed": 37,
+      "reach": 16,
+      "sight": 230,
+      "cooldown": 1.5,
+      "rout_at": 20,
+      "mounted": true,
+      "side": "ravensmere",
+      "replaces": "knight"
+    },
+    "reaver": {
+      "name": "Legionary",
+      "sprite": "foot",
+      "hp": 125,
+      "attack": 16,
+      "defence": 6,
+      "speed": 28,
+      "reach": 13,
+      "sight": 200,
+      "cooldown": 1.3,
+      "rout_at": 20,
+      "side": "ironvale",
+      "replaces": "spearman"
+    },
+    "hunter": {
+      "name": "Sagittarius",
+      "sprite": "archer",
+      "hp": 52,
+      "attack": 8,
+      "defence": 2,
+      "speed": 28,
+      "reach": 140,
+      "sight": 230,
+      "cooldown": 1.5,
+      "rout_at": 20,
+      "volley": true,
+      "fire": true,
+      "side": "ironvale",
+      "replaces": "bowman"
+    },
+    "wolf_rider": {
+      "name": "Eques",
+      "sprite": "rider",
+      "hp": 125,
+      "attack": 19,
+      "defence": 6,
+      "speed": 46,
+      "reach": 16,
+      "sight": 230,
+      "cooldown": 1.5,
+      "rout_at": 20,
+      "mounted": true,
+      "side": "ironvale",
+      "replaces": "knight"
+    },
+    "pitch_catapult": {
+      "name": "Onager",
+      "sprite": "catapult",
+      "hp": 140,
+      "attack": 30,
+      "defence": 4,
+      "speed": 8,
+      "reach": 270,
+      "sight": 310,
+      "cooldown": 3.0,
+      "rout_at": 5,
+      "siege": true,
+      "splash": 24,
+      "fire_ammo": 0.6,
+      "side": "ironvale",
+      "replaces": "catapult"
+    },
+    "siege_tower": {
+      "name": "Siege tower",
+      "sprite": "siege_tower",
+      "tower": true,
+      "garrison": 5,
+      "shoot_height": 46,
+      "hp": 420,
+      "attack": 8,
+      "defence": 10,
+      "speed": 9,
+      "reach": 200,
+      "sight": 260,
+      "cooldown": 1.8,
+      "rout_at": -1000,
+      "angle": 40,
+      "volley": false
+    },
+    "war_tower": {
+      "name": "Turris",
+      "sprite": "siege_tower",
+      "tower": true,
+      "garrison": 6,
+      "shoot_height": 46,
+      "hp": 480,
+      "attack": 7,
+      "defence": 10,
+      "speed": 8,
+      "reach": 190,
+      "sight": 260,
+      "cooldown": 1.8,
+      "rout_at": -1000,
+      "angle": 40,
+      "volley": false,
+      "fire": true,
+      "side": "ironvale",
+      "replaces": "siege_tower"
+    },
+    "azure_wyvern": {
+      "name": "Drakon",
+      "sprite": "wyvern",
+      "flying": true,
+      "air_role": "ground",
+      "altitude": 62,
+      "max_alive": 6,
+      "hp": 135,
+      "attack": 26,
+      "defence": 2,
+      "speed": 57,
+      "reach": 40,
+      "sight": 420,
+      "cooldown": 2.5,
+      "rout_at": -1000,
+      "splash": 30,
+      "fire_ammo": 0.3,
+      "side": "ravensmere",
+      "replaces": "wyvern"
+    },
+    "gyrfalcon": {
+      "name": "Owl of Athena",
+      "sprite": "hawk",
+      "flying": true,
+      "air_role": "air",
+      "altitude": 78,
+      "max_alive": 4,
+      "hp": 84,
+      "attack": 26,
+      "defence": 4,
+      "speed": 84,
+      "reach": 40,
+      "sight": 520,
+      "cooldown": 0.9,
+      "rout_at": -1000,
+      "side": "ravensmere",
+      "replaces": "hawk"
+    },
+    "royal_griffon": {
+      "name": "Gryps",
+      "sprite": "griffon",
+      "hp": 185,
+      "attack": 28,
+      "defence": 8,
+      "speed": 46,
+      "reach": 50,
+      "sight": 480,
+      "cooldown": 1.8,
+      "rout_at": -1000,
+      "flying": true,
+      "air_role": "air",
+      "altitude": 70,
+      "max_alive": 3,
+      "side": "ravensmere",
+      "replaces": "griffon"
+    },
+    "siren": {
+      "name": "Siren",
+      "sprite": "harpy",
+      "hp": 50,
+      "attack": 20,
+      "defence": 2,
+      "speed": 95,
+      "reach": 35,
+      "sight": 380,
+      "cooldown": 1.5,
+      "rout_at": -1000,
+      "flying": true,
+      "air_role": "ground",
+      "altitude": 50,
+      "max_alive": 8,
+      "swoop": true,
+      "side": "ravensmere",
+      "replaces": "harpy"
+    },
+    "ember_wyvern": {
+      "name": "Draco",
+      "sprite": "wyvern",
+      "flying": true,
+      "air_role": "ground",
+      "altitude": 62,
+      "max_alive": 6,
+      "hp": 115,
+      "attack": 30,
+      "defence": 2,
+      "speed": 52,
+      "reach": 40,
+      "sight": 420,
+      "cooldown": 2.5,
+      "rout_at": -1000,
+      "splash": 22,
+      "fire_ammo": 1.0,
+      "side": "ironvale",
+      "replaces": "wyvern"
+    },
+    "raven_rider": {
+      "name": "Aquilifer",
+      "sprite": "hawk",
+      "flying": true,
+      "air_role": "air",
+      "altitude": 78,
+      "max_alive": 4,
+      "hp": 100,
+      "attack": 22,
+      "defence": 5,
+      "speed": 72,
+      "reach": 40,
+      "sight": 520,
+      "cooldown": 1.1,
+      "rout_at": -1000,
+      "side": "ironvale",
+      "replaces": "hawk"
+    },
+    "dire_griffon": {
+      "name": "Legion griffon",
+      "sprite": "griffon",
+      "hp": 150,
+      "attack": 36,
+      "defence": 6,
+      "speed": 44,
+      "reach": 50,
+      "sight": 480,
+      "cooldown": 1.9,
+      "rout_at": -1000,
+      "flying": true,
+      "air_role": "air",
+      "altitude": 70,
+      "max_alive": 3,
+      "side": "ironvale",
+      "replaces": "griffon"
+    },
+    "fury": {
+      "name": "Fury",
+      "sprite": "harpy",
+      "hp": 62,
+      "attack": 26,
+      "defence": 2,
+      "speed": 86,
+      "reach": 35,
+      "sight": 380,
+      "cooldown": 1.5,
+      "rout_at": -1000,
+      "flying": true,
+      "air_role": "ground",
+      "altitude": 50,
+      "max_alive": 8,
+      "swoop": true,
+      "side": "ironvale",
+      "replaces": "harpy"
+    },
+    "swan_ship": {
+      "name": "Trireme",
+      "sprite": "longship",
+      "naval": true,
+      "naval_role": "ram",
+      "max_alive": 3,
+      "hp": 240,
+      "attack": 36,
+      "defence": 8,
+      "speed": 50,
+      "reach": 44,
+      "sight": 380,
+      "cooldown": 1.6,
+      "rout_at": -1000,
+      "side": "ravensmere",
+      "replaces": "longship"
+    },
+    "royal_galley": {
+      "name": "Pentekonter",
+      "sprite": "galley",
+      "naval": true,
+      "naval_role": "archer",
+      "max_alive": 2,
+      "hp": 250,
+      "attack": 19,
+      "defence": 5,
+      "speed": 28,
+      "reach": 250,
+      "sight": 320,
+      "cooldown": 1.2,
+      "rout_at": -1000,
+      "side": "ravensmere",
+      "replaces": "galley"
+    },
+    "stone_barge": {
+      "name": "Lithobolos barge",
+      "sprite": "catapult_ship",
+      "naval": true,
+      "naval_role": "bombard",
+      "bombard": true,
+      "max_alive": 2,
+      "hp": 280,
+      "attack": 58,
+      "defence": 6,
+      "speed": 18,
+      "reach": 360,
+      "sight": 400,
+      "cooldown": 3.6,
+      "rout_at": -1000,
+      "splash": 22,
+      "angle": 55,
+      "side": "ravensmere",
+      "replaces": "catapult_ship"
+    },
+    "transport_barge": {
+      "name": "Hoplite transport",
+      "sprite": "landing_boat",
+      "naval": true,
+      "naval_role": "transport",
+      "carry": 8,
+      "max_alive": 2,
+      "hp": 130,
+      "attack": 0,
+      "defence": 3,
+      "speed": 34,
+      "reach": 0,
+      "sight": 200,
+      "cooldown": 9.0,
+      "rout_at": -1000,
+      "side": "ravensmere",
+      "replaces": "landing_boat"
+    },
+    "dragon_ship": {
+      "name": "Quinquereme",
+      "sprite": "longship",
+      "naval": true,
+      "naval_role": "ram",
+      "max_alive": 3,
+      "hp": 300,
+      "attack": 46,
+      "defence": 8,
+      "speed": 44,
+      "reach": 44,
+      "sight": 380,
+      "cooldown": 1.6,
+      "rout_at": -1000,
+      "side": "ironvale",
+      "replaces": "longship"
+    },
+    "fire_galley": {
+      "name": "Liburna",
+      "sprite": "galley",
+      "naval": true,
+      "naval_role": "archer",
+      "max_alive": 2,
+      "hp": 220,
+      "attack": 17,
+      "defence": 5,
+      "speed": 28,
+      "reach": 210,
+      "sight": 320,
+      "cooldown": 1.4,
+      "rout_at": -1000,
+      "fire": true,
+      "side": "ironvale",
+      "replaces": "galley"
+    },
+    "pitch_barge": {
+      "name": "Onager barge",
+      "sprite": "catapult_ship",
+      "naval": true,
+      "naval_role": "bombard",
+      "bombard": true,
+      "max_alive": 2,
+      "hp": 280,
+      "attack": 66,
+      "defence": 6,
+      "speed": 18,
+      "reach": 340,
+      "sight": 400,
+      "cooldown": 4.4,
+      "rout_at": -1000,
+      "splash": 30,
+      "angle": 55,
+      "fire_ammo": 0.7,
+      "side": "ironvale",
+      "replaces": "catapult_ship"
+    },
+    "raider_boat": {
+      "name": "Navis onoraria",
+      "sprite": "landing_boat",
+      "naval": true,
+      "naval_role": "transport",
+      "carry": 6,
+      "max_alive": 2,
+      "hp": 100,
+      "attack": 0,
+      "defence": 3,
+      "speed": 46,
+      "reach": 0,
+      "sight": 200,
+      "cooldown": 9.0,
+      "rout_at": -1000,
+      "side": "ironvale",
+      "replaces": "landing_boat"
+    },
+    "royal_marine": {
+      "name": "Epibates",
+      "sprite": "foot",
+      "hp": 80,
+      "attack": 16,
+      "defence": 8,
+      "speed": 38,
+      "reach": 14,
+      "sight": 150,
+      "cooldown": 1.3,
+      "rout_at": 12,
+      "side": "ravensmere",
+      "replaces": "marine"
+    },
+    "viking": {
+      "name": "Classiarius",
+      "sprite": "foot",
+      "hp": 70,
+      "attack": 22,
+      "defence": 4,
+      "speed": 38,
+      "reach": 14,
+      "sight": 150,
+      "cooldown": 1.3,
+      "rout_at": 12,
+      "berserk": true,
+      "side": "ironvale",
+      "replaces": "marine"
+    }
+  },
+  "terrain": [
+    {
+      "id": "moat_rav_north",
+      "rect": [
+        4,
+        170,
+        302,
+        12
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_rav_south",
+      "rect": [
+        4,
+        530,
+        302,
+        12
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_rav_west",
+      "rect": [
+        4,
+        170,
+        10,
+        372
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_rav_east_up",
+      "rect": [
+        296,
+        170,
+        10,
+        150
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_rav_east_down",
+      "rect": [
+        296,
+        400,
+        10,
+        142
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "rav_north",
+      "rect": [
+        30,
+        200,
+        240,
+        14
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ravensmere",
+      "hp": 320,
+      "name": "north wall of Ravensmere"
+    },
+    {
+      "id": "rav_south",
+      "rect": [
+        30,
+        506,
+        240,
+        14
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ravensmere",
+      "hp": 320,
+      "name": "south wall of Ravensmere"
+    },
+    {
+      "id": "rav_west",
+      "rect": [
+        30,
+        200,
+        14,
+        320
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ravensmere",
+      "hp": 320,
+      "name": "west wall of Ravensmere"
+    },
+    {
+      "id": "rav_east_up",
+      "rect": [
+        256,
+        200,
+        14,
+        120
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ravensmere",
+      "hp": 320,
+      "name": "east wall of Ravensmere"
+    },
+    {
+      "id": "rav_east_down",
+      "rect": [
+        256,
+        400,
+        14,
+        120
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ravensmere",
+      "hp": 320,
+      "name": "east wall of Ravensmere"
+    },
+    {
+      "id": "gate_left",
+      "rect": [
+        256,
+        320,
+        14,
+        80
+      ],
+      "color": [
+        120,
+        88,
+        56
+      ],
+      "solid": true,
+      "style": "gate",
+      "height": 26,
+      "owner": "ravensmere",
+      "hp": 160,
+      "name": "west gate of Ravensmere"
+    },
+    {
+      "id": "rav_tower_nw",
+      "rect": [
+        18,
+        188,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ravensmere",
+      "hp": 300,
+      "name": "north-west tower of Ravensmere"
+    },
+    {
+      "id": "rav_tower_sw",
+      "rect": [
+        18,
+        496,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ravensmere",
+      "hp": 300,
+      "name": "south-west tower of Ravensmere"
+    },
+    {
+      "id": "rav_tower_ne",
+      "rect": [
+        254,
+        188,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ravensmere",
+      "hp": 300,
+      "name": "north-east tower of Ravensmere"
+    },
+    {
+      "id": "rav_tower_se",
+      "rect": [
+        254,
+        496,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ravensmere",
+      "hp": 300,
+      "name": "south-east tower of Ravensmere"
+    },
+    {
+      "id": "rav_keep",
+      "rect": [
+        110,
+        300,
+        70,
+        120
+      ],
+      "color": [
+        110,
+        106,
+        104
+      ],
+      "solid": false,
+      "style": "keep",
+      "height": 44,
+      "owner": "ravensmere"
+    },
+    {
+      "id": "rav_palisade_n",
+      "rect": [
+        330,
+        250,
+        10,
+        60
+      ],
+      "color": [
+        140,
+        104,
+        60
+      ],
+      "solid": true,
+      "style": "palisade",
+      "height": 16,
+      "owner": "ravensmere",
+      "hp": 90,
+      "name": "palisade of Ravensmere"
+    },
+    {
+      "id": "rav_palisade_s",
+      "rect": [
+        330,
+        410,
+        10,
+        60
+      ],
+      "color": [
+        140,
+        104,
+        60
+      ],
+      "solid": true,
+      "style": "palisade",
+      "height": 16,
+      "owner": "ravensmere",
+      "hp": 90,
+      "name": "palisade of Ravensmere"
+    },
+    {
+      "id": "moat_iron_north",
+      "rect": [
+        3694,
+        170,
+        302,
+        12
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_iron_south",
+      "rect": [
+        3694,
+        530,
+        302,
+        12
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_iron_east",
+      "rect": [
+        3986,
+        170,
+        10,
+        372
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_iron_west_up",
+      "rect": [
+        3694,
+        170,
+        10,
+        150
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "moat_iron_west_down",
+      "rect": [
+        3694,
+        400,
+        10,
+        142
+      ],
+      "color": [
+        40,
+        84,
+        130
+      ],
+      "solid": true,
+      "style": "moat"
+    },
+    {
+      "id": "iron_north",
+      "rect": [
+        3730,
+        200,
+        240,
+        14
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ironvale",
+      "hp": 320,
+      "name": "north wall of Ironvale"
+    },
+    {
+      "id": "iron_south",
+      "rect": [
+        3730,
+        506,
+        240,
+        14
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ironvale",
+      "hp": 320,
+      "name": "south wall of Ironvale"
+    },
+    {
+      "id": "iron_east",
+      "rect": [
+        3956,
+        200,
+        14,
+        320
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ironvale",
+      "hp": 320,
+      "name": "east wall of Ironvale"
+    },
+    {
+      "id": "iron_west_up",
+      "rect": [
+        3730,
+        200,
+        14,
+        120
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ironvale",
+      "hp": 320,
+      "name": "west wall of Ironvale"
+    },
+    {
+      "id": "iron_west_down",
+      "rect": [
+        3730,
+        400,
+        14,
+        120
+      ],
+      "color": [
+        96,
+        92,
+        92
+      ],
+      "solid": true,
+      "style": "wall",
+      "height": 26,
+      "owner": "ironvale",
+      "hp": 320,
+      "name": "west wall of Ironvale"
+    },
+    {
+      "id": "gate_right",
+      "rect": [
+        3730,
+        320,
+        14,
+        80
+      ],
+      "color": [
+        120,
+        88,
+        56
+      ],
+      "solid": true,
+      "style": "gate",
+      "height": 26,
+      "owner": "ironvale",
+      "hp": 160,
+      "name": "east gate of Ironvale"
+    },
+    {
+      "id": "iron_tower_nw",
+      "rect": [
+        3946,
+        188,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ironvale",
+      "hp": 300,
+      "name": "north-west tower of Ironvale"
+    },
+    {
+      "id": "iron_tower_sw",
+      "rect": [
+        3946,
+        496,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ironvale",
+      "hp": 300,
+      "name": "south-west tower of Ironvale"
+    },
+    {
+      "id": "iron_tower_ne",
+      "rect": [
+        3710,
+        188,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ironvale",
+      "hp": 300,
+      "name": "north-east tower of Ironvale"
+    },
+    {
+      "id": "iron_tower_se",
+      "rect": [
+        3710,
+        496,
+        36,
+        36
+      ],
+      "color": [
+        84,
+        82,
+        86
+      ],
+      "solid": true,
+      "style": "tower",
+      "height": 60,
+      "owner": "ironvale",
+      "hp": 300,
+      "name": "south-east tower of Ironvale"
+    },
+    {
+      "id": "iron_keep",
+      "rect": [
+        3820,
+        300,
+        70,
+        120
+      ],
+      "color": [
+        110,
+        106,
+        104
+      ],
+      "solid": false,
+      "style": "keep",
+      "height": 44,
+      "owner": "ironvale"
+    },
+    {
+      "id": "iron_palisade_n",
+      "rect": [
+        3660,
+        250,
+        10,
+        60
+      ],
+      "color": [
+        140,
+        104,
+        60
+      ],
+      "solid": true,
+      "style": "palisade",
+      "height": 16,
+      "owner": "ironvale",
+      "hp": 90,
+      "name": "palisade of Ironvale"
+    },
+    {
+      "id": "iron_palisade_s",
+      "rect": [
+        3660,
+        410,
+        10,
+        60
+      ],
+      "color": [
+        140,
+        104,
+        60
+      ],
+      "solid": true,
+      "style": "palisade",
+      "height": 16,
+      "owner": "ironvale",
+      "hp": 90,
+      "name": "palisade of Ironvale"
+    },
+    {
+      "id": "spikes_rav",
+      "rect": [
+        350,
+        280,
+        46,
+        150
+      ],
+      "color": [
+        70,
+        70,
+        76
+      ],
+      "solid": false,
+      "style": "spikes"
+    },
+    {
+      "id": "spikes_iron",
+      "rect": [
+        3604,
+        280,
+        46,
+        150
+      ],
+      "color": [
+        70,
+        70,
+        76
+      ],
+      "solid": false,
+      "style": "spikes"
+    },
+    {
+      "id": "trench_w_main",
+      "rect": [
+        1250,
+        220,
+        14,
+        290
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_w_a",
+      "rect": [
+        1190,
+        262,
+        60,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_w_b",
+      "rect": [
+        1190,
+        440,
+        60,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_e_main",
+      "rect": [
+        2736,
+        220,
+        14,
+        290
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_e_a",
+      "rect": [
+        2750,
+        262,
+        60,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_e_b",
+      "rect": [
+        2750,
+        440,
+        60,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_mid_0",
+      "rect": [
+        1850,
+        300,
+        300,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_mid_1",
+      "rect": [
+        1850,
+        400,
+        300,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_mid_2",
+      "rect": [
+        1900,
+        200,
+        200,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_mid_3",
+      "rect": [
+        1900,
+        520,
+        200,
+        12
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_mid_4",
+      "rect": [
+        1850,
+        300,
+        12,
+        112
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "trench_mid_5",
+      "rect": [
+        2138,
+        300,
+        12,
+        112
+      ],
+      "color": [
+        74,
+        56,
+        38
+      ],
+      "solid": false,
+      "style": "trench"
+    },
+    {
+      "id": "spikes_mid_0",
+      "rect": [
+        1600,
+        250,
+        50,
+        40
+      ],
+      "color": [
+        70,
+        70,
+        76
+      ],
+      "solid": false,
+      "style": "spikes"
+    },
+    {
+      "id": "spikes_mid_1",
+      "rect": [
+        2350,
+        440,
+        50,
+        40
+      ],
+      "color": [
+        70,
+        70,
+        76
+      ],
+      "solid": false,
+      "style": "spikes"
+    },
+    {
+      "id": "spikes_mid_2",
+      "rect": [
+        1980,
+        330,
+        40,
+        60
+      ],
+      "color": [
+        70,
+        70,
+        76
+      ],
+      "solid": false,
+      "style": "spikes"
+    },
+    {
+      "id": "spikes_mid_3",
+      "rect": [
+        1450,
+        460,
+        46,
+        36
+      ],
+      "color": [
+        70,
+        70,
+        76
+      ],
+      "solid": false,
+      "style": "spikes"
+    },
+    {
+      "id": "spikes_mid_4",
+      "rect": [
+        2500,
+        220,
+        46,
+        36
+      ],
+      "color": [
+        70,
+        70,
+        76
+      ],
+      "solid": false,
+      "style": "spikes"
+    }
+  ],
+  "craters": [
+    [
+      1931,
+      379,
+      16
+    ],
+    [
+      1369,
+      381,
+      17
+    ],
+    [
+      2586,
+      160,
+      12
+    ],
+    [
+      1181,
+      539,
+      18
+    ],
+    [
+      1084,
+      631,
+      22
+    ],
+    [
+      2308,
+      436,
+      10
+    ],
+    [
+      1030,
+      390,
+      9
+    ],
+    [
+      1380,
+      238,
+      8
+    ],
+    [
+      1928,
+      343,
+      20
+    ],
+    [
+      2038,
+      449,
+      15
+    ],
+    [
+      2325,
+      352,
+      12
+    ],
+    [
+      2995,
+      638,
+      20
+    ],
+    [
+      2416,
+      277,
+      11
+    ],
+    [
+      1578,
+      147,
+      19
+    ],
+    [
+      1801,
+      559,
+      13
+    ],
+    [
+      2916,
+      559,
+      8
+    ],
+    [
+      1419,
+      592,
+      15
+    ],
+    [
+      2961,
+      321,
+      9
+    ],
+    [
+      2259,
+      523,
+      12
+    ],
+    [
+      2516,
+      173,
+      11
+    ],
+    [
+      1202,
+      142,
+      19
+    ],
+    [
+      1355,
+      406,
+      14
+    ],
+    [
+      1381,
+      498,
+      10
+    ],
+    [
+      2287,
+      172,
+      14
+    ],
+    [
+      1426,
+      253,
+      22
+    ],
+    [
+      2607,
+      271,
+      20
+    ],
+    [
+      1421,
+      319,
+      20
+    ],
+    [
+      2284,
+      163,
+      22
+    ],
+    [
+      1426,
+      247,
+      19
+    ],
+    [
+      1180,
+      419,
+      11
+    ],
+    [
+      2203,
+      307,
+      14
+    ],
+    [
+      2918,
+      366,
+      16
+    ],
+    [
+      2733,
+      207,
+      10
+    ],
+    [
+      2817,
+      543,
+      11
+    ],
+    [
+      1380,
+      502,
+      21
+    ],
+    [
+      1393,
+      614,
+      20
+    ],
+    [
+      2207,
+      333,
+      9
+    ],
+    [
+      1077,
+      620,
+      11
+    ],
+    [
+      2409,
+      246,
+      20
+    ],
+    [
+      2193,
+      266,
+      10
+    ],
+    [
+      2441,
+      146,
+      11
+    ],
+    [
+      2119,
+      562,
+      17
+    ],
+    [
+      1560,
+      596,
+      11
+    ],
+    [
+      1033,
+      253,
+      14
+    ],
+    [
+      1121,
+      203,
+      13
+    ],
+    [
+      2144,
+      180,
+      13
+    ],
+    [
+      2782,
+      630,
+      17
+    ],
+    [
+      2382,
+      420,
+      10
+    ]
+  ],
+  "groups": [
+    {
+      "side": "ravensmere",
+      "unit_type": "ballista",
+      "count": 2,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "wyvern",
+      "count": 3,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "hawk",
+      "count": 2,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "ballista",
+      "count": 2,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "wyvern",
+      "count": 3,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "hawk",
+      "count": 2,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "king_edric",
+      "count": 1,
+      "area": [
+        138,
+        352,
+        14,
+        14
+      ],
+      "name": "King Edric"
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "king_varok",
+      "count": 1,
+      "area": [
+        3848,
+        352,
+        14,
+        14
+      ],
+      "name": "King Varok"
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "aldric",
+      "count": 1,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ],
+      "name": "Sir Aldric"
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "isolde",
+      "count": 1,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ],
+      "name": "Lady Isolde"
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "wren",
+      "count": 1,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ],
+      "name": "Wren"
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "ambrose",
+      "count": 1,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ],
+      "name": "Brother Ambrose"
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "gorm",
+      "count": 1,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ],
+      "name": "Gorm Ironhide"
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "kael",
+      "count": 1,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ],
+      "name": "Kael Stormrider"
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "sable",
+      "count": 1,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ],
+      "name": "Sable"
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "morwen",
+      "count": 1,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ],
+      "name": "Morwen"
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "spearman",
+      "count": 30,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "bowman",
+      "count": 14,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "knight",
+      "count": 6,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "fire_archer",
+      "count": 4,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        18,
+        188,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        18,
+        496,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        254,
+        188,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        254,
+        496,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "tower_bowman",
+      "count": 8,
+      "area": [
+        30,
+        200,
+        240,
+        14
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "tower_bowman",
+      "count": 8,
+      "area": [
+        30,
+        506,
+        240,
+        14
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "spearman",
+      "count": 30,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "bowman",
+      "count": 14,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "knight",
+      "count": 6,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "fire_archer",
+      "count": 4,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        3946,
+        188,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        3946,
+        496,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        3710,
+        188,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "tower_bowman",
+      "count": 3,
+      "area": [
+        3710,
+        496,
+        36,
+        36
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "tower_bowman",
+      "count": 8,
+      "area": [
+        3730,
+        200,
+        240,
+        14
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "tower_bowman",
+      "count": 8,
+      "area": [
+        3730,
+        506,
+        240,
+        14
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "longbow",
+      "count": 2,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "halberdier",
+      "count": 2,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "berserker",
+      "count": 2,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "pavise_cross",
+      "count": 2,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "war_dog",
+      "count": 3,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "ram",
+      "count": 1,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "longbow",
+      "count": 2,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "halberdier",
+      "count": 2,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "berserker",
+      "count": 2,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "pavise_cross",
+      "count": 2,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "war_dog",
+      "count": 3,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "ram",
+      "count": 1,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "longship",
+      "count": 2,
+      "area": [
+        60,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "galley",
+      "count": 1,
+      "area": [
+        60,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "catapult_ship",
+      "count": 1,
+      "area": [
+        60,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "landing_boat",
+      "count": 1,
+      "area": [
+        60,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "longship",
+      "count": 2,
+      "area": [
+        3620,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "galley",
+      "count": 1,
+      "area": [
+        3620,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "catapult_ship",
+      "count": 1,
+      "area": [
+        3620,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "landing_boat",
+      "count": 1,
+      "area": [
+        3620,
+        700,
+        320,
+        150
+      ]
+    },
+    {
+      "side": "ravensmere",
+      "unit_type": "siege_tower",
+      "count": 1,
+      "area": [
+        50,
+        220,
+        150,
+        270
+      ]
+    },
+    {
+      "side": "ironvale",
+      "unit_type": "siege_tower",
+      "count": 1,
+      "area": [
+        3800,
+        220,
+        150,
+        270
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "take_ironvale",
+      "side": "ravensmere",
+      "text": "Ravensmere: take the keep of Ironvale",
+      "when": {
+        "type": "side_reaches",
+        "side": "ravensmere",
+        "area": [
+          3820,
+          300,
+          70,
+          120
+        ]
+      }
+    },
+    {
+      "id": "take_ravensmere",
+      "side": "ironvale",
+      "text": "Ironvale: take the keep of Ravensmere",
+      "when": {
+        "type": "side_reaches",
+        "side": "ironvale",
+        "area": [
+          110,
+          300,
+          70,
+          120
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "sea_wave",
+      "repeat": true,
+      "cooldown": 55,
+      "trigger": {
+        "type": "time",
+        "at": 40
+      },
+      "actions": [
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "longship",
+          "count": 1,
+          "area": [
+            60,
+            700,
+            320,
+            150
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "galley",
+          "count": 1,
+          "area": [
+            60,
+            700,
+            320,
+            150
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "landing_boat",
+          "count": 1,
+          "area": [
+            60,
+            700,
+            320,
+            150
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "longship",
+          "count": 1,
+          "area": [
+            3620,
+            700,
+            320,
+            150
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "galley",
+          "count": 1,
+          "area": [
+            3620,
+            700,
+            320,
+            150
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "landing_boat",
+          "count": 1,
+          "area": [
+            3620,
+            700,
+            320,
+            150
+          ]
+        }
+      ]
+    },
+    {
+      "id": "air_wave",
+      "repeat": true,
+      "cooldown": 40,
+      "trigger": {
+        "type": "time",
+        "at": 30
+      },
+      "actions": [
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "wyvern",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "hawk",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "wyvern",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "hawk",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "griffon",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "harpy",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "griffon",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "harpy",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        }
+      ]
+    },
+    {
+      "id": "muster",
+      "repeat": true,
+      "cooldown": 20,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "time",
+            "at": 0
+          },
+          {
+            "type": "side_below",
+            "side": "ravensmere",
+            "count": 130
+          },
+          {
+            "type": "side_below",
+            "side": "ironvale",
+            "count": 130
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "spearman",
+          "count": 6,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "bowman",
+          "count": 3,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "fire_archer",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "knight",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "longbow",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "halberdier",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "berserker",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "war_dog",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "pavise_cross",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "spearman",
+          "count": 6,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "bowman",
+          "count": 3,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "fire_archer",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "knight",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "longbow",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "halberdier",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "berserker",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "war_dog",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "pavise_cross",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        }
+      ]
+    },
+    {
+      "id": "siege_wave",
+      "repeat": true,
+      "cooldown": 5,
+      "trigger": {
+        "type": "wave",
+        "event": "muster",
+        "every": 5
+      },
+      "actions": [
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "catapult",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "trebuchet",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "mangonel",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "ballista",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "ram",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "catapult",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "trebuchet",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "mangonel",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "ballista",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "ram",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "siege_tower",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "siege_tower",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "message",
+          "text": "Siege engines roll out behind the fifth wave."
+        }
+      ]
+    },
+    {
+      "id": "siege_catapults",
+      "repeat": true,
+      "cooldown": 45,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "time",
+            "at": 40
+          },
+          {
+            "type": "side_below",
+            "side": "ravensmere",
+            "count": 130
+          },
+          {
+            "type": "side_below",
+            "side": "ironvale",
+            "count": 130
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "mangonel",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "mangonel",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "ballista",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "ballista",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "catapult",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "catapult",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "message",
+          "text": "Both castles bring up a catapult."
+        }
+      ]
+    },
+    {
+      "id": "siege_trebuchets",
+      "repeat": true,
+      "cooldown": 90,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "time",
+            "at": 150
+          },
+          {
+            "type": "side_below",
+            "side": "ravensmere",
+            "count": 130
+          },
+          {
+            "type": "side_below",
+            "side": "ironvale",
+            "count": 130
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "trebuchet",
+          "count": 1,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "trebuchet",
+          "count": 1,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "message",
+          "text": "Both castles raise a trebuchet behind their walls."
+        }
+      ]
+    },
+    {
+      "id": "open_left_gate",
+      "repeat": true,
+      "cooldown": 10,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "units_in_area",
+            "side": "ironvale",
+            "area": [
+              270,
+              280,
+              140,
+              160
+            ],
+            "count": 6
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "terrain_hidden",
+              "id": "gate_left"
+            }
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "hide_terrain",
+          "id": "gate_left"
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "bowman",
+          "count": 4,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "spearman",
+          "count": 3,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "fire_archer",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "knight",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "longbow",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "halberdier",
+          "count": 3,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "berserker",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "war_dog",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "pavise_cross",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "message",
+          "text": "Ravensmere sallies out through the west gate!"
+        }
+      ]
+    },
+    {
+      "id": "sally_left_gate",
+      "repeat": true,
+      "cooldown": 60,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "units_in_area",
+            "side": "ravensmere",
+            "area": [
+              50,
+              220,
+              150,
+              270
+            ],
+            "count": 10
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "terrain_hidden",
+              "id": "gate_left"
+            }
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "hide_terrain",
+          "id": "gate_left"
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "bowman",
+          "count": 6,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "spearman",
+          "count": 3,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "fire_archer",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "knight",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "longbow",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "halberdier",
+          "count": 3,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "berserker",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "war_dog",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ravensmere",
+          "unit_type": "pavise_cross",
+          "count": 2,
+          "area": [
+            50,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "message",
+          "text": "The garrison of Ravensmere marches out of the west gate, bows in hand."
+        }
+      ]
+    },
+    {
+      "id": "close_left_gate",
+      "repeat": true,
+      "cooldown": 5,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "terrain_hidden",
+            "id": "gate_left"
+          },
+          {
+            "type": "any",
+            "conditions": [
+              {
+                "type": "after",
+                "event": "open_left_gate",
+                "seconds": 20
+              },
+              {
+                "type": "after",
+                "event": "sally_left_gate",
+                "seconds": 20
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "show_terrain",
+          "id": "gate_left"
+        },
+        {
+          "type": "message",
+          "text": "The west gate of Ravensmere is shut again."
+        }
+      ]
+    },
+    {
+      "id": "open_right_gate",
+      "repeat": true,
+      "cooldown": 10,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "units_in_area",
+            "side": "ravensmere",
+            "area": [
+              3590,
+              280,
+              140,
+              160
+            ],
+            "count": 6
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "terrain_hidden",
+              "id": "gate_right"
+            }
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "hide_terrain",
+          "id": "gate_right"
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "bowman",
+          "count": 4,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "spearman",
+          "count": 3,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "fire_archer",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "knight",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "longbow",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "halberdier",
+          "count": 3,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "berserker",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "war_dog",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "pavise_cross",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "message",
+          "text": "Ironvale sallies out through the east gate!"
+        }
+      ]
+    },
+    {
+      "id": "sally_right_gate",
+      "repeat": true,
+      "cooldown": 60,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "units_in_area",
+            "side": "ironvale",
+            "area": [
+              3800,
+              220,
+              150,
+              270
+            ],
+            "count": 10
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "terrain_hidden",
+              "id": "gate_right"
+            }
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "hide_terrain",
+          "id": "gate_right"
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "bowman",
+          "count": 6,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "spearman",
+          "count": 3,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "fire_archer",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "knight",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "longbow",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "halberdier",
+          "count": 3,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "berserker",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "war_dog",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "spawn",
+          "side": "ironvale",
+          "unit_type": "pavise_cross",
+          "count": 2,
+          "area": [
+            3800,
+            220,
+            150,
+            270
+          ]
+        },
+        {
+          "type": "message",
+          "text": "The garrison of Ironvale marches out of the east gate, bows in hand."
+        }
+      ]
+    },
+    {
+      "id": "close_right_gate",
+      "repeat": true,
+      "cooldown": 5,
+      "trigger": {
+        "type": "all",
+        "conditions": [
+          {
+            "type": "terrain_hidden",
+            "id": "gate_right"
+          },
+          {
+            "type": "any",
+            "conditions": [
+              {
+                "type": "after",
+                "event": "open_right_gate",
+                "seconds": 20
+              },
+              {
+                "type": "after",
+                "event": "sally_right_gate",
+                "seconds": 20
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "show_terrain",
+          "id": "gate_right"
+        },
+        {
+          "type": "message",
+          "text": "The east gate of Ironvale is shut again."
+        }
+      ]
+    },
+    {
+      "id": "assault_ravensmere",
+      "trigger": {
+        "type": "any",
+        "conditions": [
+          {
+            "type": "units_in_area",
+            "side": "ravensmere",
+            "area": [
+              1500,
+              240,
+              1000,
+              240
+            ],
+            "count": 25
+          },
+          {
+            "type": "time",
+            "at": 150
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_goal",
+          "side": "ravensmere",
+          "point": [
+            3855,
+            360
+          ]
+        },
+        {
+          "type": "message",
+          "text": "Ravensmere marches on the keep of Ironvale!"
+        }
+      ]
+    },
+    {
+      "id": "assault_ironvale",
+      "trigger": {
+        "type": "any",
+        "conditions": [
+          {
+            "type": "units_in_area",
+            "side": "ironvale",
+            "area": [
+              1500,
+              240,
+              1000,
+              240
+            ],
+            "count": 25
+          },
+          {
+            "type": "time",
+            "at": 150
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "set_goal",
+          "side": "ironvale",
+          "point": [
+            145,
+            360
+          ]
+        },
+        {
+          "type": "message",
+          "text": "Ironvale marches on the keep of Ravensmere!"
+        }
+      ]
+    }
+  ],
+  "weather": {
+    "start": "clear",
+    "cycle": [
+      60,
+      130
+    ]
+  }
+}
